@@ -1,3 +1,5 @@
+const http = require('http');
+
 const PORT = 3000;
 
 const html = `
@@ -34,8 +36,6 @@ const js = `
 const button = document.querySelector('button');
 button.addEventListener('click', event => alert( 'Hi' ));
 `;
-
-const http = require('http');
 
 const server = http.createServer((req, res) => {
   switch (req.url) {
