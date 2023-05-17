@@ -4,3 +4,10 @@ git rm <file name>
 git commit //закоммитить изменения, чтобы они отложились в гит
 git push origin <repository name>
 git push origin main // синхронизирует изменения с гитХабом
+
+
+NPM
+
+npm install имя_плагина 
+
+mpi i // создаст папку node_modules, в которой окажутся все необходимые модули 
