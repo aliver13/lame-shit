@@ -1,0 +1,6 @@
+git status // получить инфу по текущему состоянию синхронизации с гитом
+git rm <file name>
+(git rm filename.js) // удалит файлы из репозитория
+git commit //закоммитить изменения, чтобы они отложились в гит
+git push origin <repository name>
+git push origin main // синхронизирует изменения с гитХабом
