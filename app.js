@@ -15,15 +15,11 @@ const path = require('path');
 const pathWithSite = 'browser-interface';
 const indexPath = path.join(__dirname, pathWithSite, 'index.html');
 const contactPath = path.join(__dirname, pathWithSite, 'contact.html');
-const  styleFilePath = path.join(__dirname, pathWithSite, 'style.css');
+const styleFilePath = path.join(__dirname, pathWithSite, 'style.css');
+const siteScripts = path.join(__dirname, pathWithSite, 'script.js');
 
 //Порт сервера
 const PORT = 3000;
-
-const js = `
-const button = document.querySelector('button');
-button.addEventListener('click', event => alert( 'Hi' ));
-`;
 
 const server = http.createServer((req, res) => {
     console.log(req.url);
@@ -41,6 +37,7 @@ const server = http.createServer((req, res) => {
 
             res.writeHead(200, { 'Content-Type': 'text/html' });
             break;
+
         case '/contact':
             fs.readFile(contactPath, (err, data) => {
                 if (err) {
@@ -51,6 +48,7 @@ const server = http.createServer((req, res) => {
                 res.end(data);
             });
             break;
+
         case '/style.css':
             fs.readFile(styleFilePath, (err, data) => {
                 if (err) {
@@ -61,10 +59,18 @@ const server = http.createServer((req, res) => {
                 res.end(data);
             });
             break;
-        case '/app.js':
-            res.writeHead(200, { 'Content-Type': 'text/javascript' });
-            res.end(js);
+
+        case '/script.js':
+            fs.readFile(siteScripts, (err, data) => {
+                if (err) {
+                    throw err;
+                }
+
+                res.writeHead(200, { 'Content-Type': 'application/javascript' });
+                res.end(data);
+            });
             break;
+
         default:
             res.writeHead(404, { 'Content-Type': 'text/plain' });
             res.end('404 not found');
